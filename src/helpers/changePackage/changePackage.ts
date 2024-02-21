@@ -2,15 +2,18 @@ import { readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
 import * as process from "process";
 
-const changePackage = (dest: string, userDir: string): void => {
-  const packagePath = resolve(dest, "package.json");
-  const currentDirName = process.cwd().split("\\").at(-1);
+const changePackage = (userDir: string): void => {
+  const currentDirName = process.cwd().split("\\").at(-1) as string;
 
-  const actualUserDir = userDir === "." ? currentDirName : userDir;
+  const actualProjectName = userDir === "." ? currentDirName : userDir;
+  const packageJsonPath = userDir === "." ? "" : actualProjectName;
+
+  const packagePath = resolve(process.cwd(), packageJsonPath, "package.json");
 
   const packageJson = readFileSync(packagePath, "utf-8");
-  const replace = packageJson.replace('"name": "create-art-app"', `"name": "${actualUserDir}"`);
-  writeFileSync(packagePath, replace);
+  const pack = JSON.parse(packageJson);
+  pack.name = actualProjectName;
+  writeFileSync(packagePath, JSON.stringify(pack, null, "  "));
 };
 
 export default changePackage;
