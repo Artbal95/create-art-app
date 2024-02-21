@@ -1,0 +1,8 @@
+# Ignore artifacts:
+dist
+tsconfig.json
+templates
+.eslintrc.cjs
+.eslintrules.cjs
+.eslintprod.cjs
+scripts

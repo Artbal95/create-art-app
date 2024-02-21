@@ -1,0 +1,9 @@
+# Ignore artifacts:
+dist
+package.json
+yarn.lock
+templates
+.eslintprod.cjs
+.eslintrc.cjs
+.eslintrules.cjs
+scripts

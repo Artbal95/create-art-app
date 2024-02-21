@@ -1,0 +1,3 @@
+{
+  "*.{ts}": ["prettier . --check --end-of-line auto", "eslint . --quiet --config .eslintprod.cjs"]
+}
