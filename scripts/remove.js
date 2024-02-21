@@ -38,7 +38,7 @@ const removeFolder = async (projectName) => {
 const changeTemplate = (templateDir, removeName, temps) => {
   const removeTemplate = temps.filter(({ path }) => path !== removeName);
 
-  fs.writeFileSync(templateDir, JSON.stringify(removeTemplate))
+  fs.writeFileSync(templateDir, JSON.stringify(removeTemplate, null, 2))
 }
 
 const remove = async () => {

@@ -34,7 +34,11 @@ const createFolder = (projectName, color) => {
   try {
     if (!fs.existsSync(templatesDir)) {
       fs.mkdirSync(templatesDir);
-      fs.writeFileSync(resolve(templatesDir, '.gitkeep'), "")
+
+      const packageJson = fs.readFileSync(resolve(__dirname, './temp/package.json'), "utf8")
+      const pack = JSON.parse(packageJson);
+      pack.name = projectName.split(" ").join("-")
+      fs.writeFileSync(resolve(templatesDir, "package.json"), JSON.stringify(pack, null, 2))
 
       console.log(kolorist.green("Success: Create the folder in templates"));
 
@@ -66,7 +70,7 @@ const changeTemplate = (projectName, color) => {
       isAdmin: false
     }
 
-    const newTemplatesJson = JSON.stringify([...temp, newTemplate])
+    const newTemplatesJson = JSON.stringify([...temp, newTemplate], null, 2)
 
     fs.writeFileSync(templates, newTemplatesJson)
   } else {
