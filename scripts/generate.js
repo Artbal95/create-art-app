@@ -29,7 +29,7 @@ const createFolder = (projectName, color) => {
   console.log("");
   console.log("");
 
-  const templatesDir = resolve(__dirname, "../templates", projectName.split(" ").join("-"));
+  const templatesDir = resolve(__dirname, "../templates", projectName.toLowerCase().split(" ").join("-"));
 
   try {
     if (!fs.existsSync(templatesDir)) {
@@ -65,7 +65,7 @@ const changeTemplate = (projectName, color) => {
   if (!checkTemplateName(temp, projectName)) {
     const newTemplate = {
       name: projectName,
-      path: projectName.split(" ").join("-"),
+      path: projectName.toLowerCase().split(" ").join("-"),
       color,
       isAdmin: false
     }
@@ -73,8 +73,10 @@ const changeTemplate = (projectName, color) => {
     const newTemplatesJson = JSON.stringify([...temp, newTemplate], null, 2)
 
     fs.writeFileSync(templates, newTemplatesJson)
+    return temp.length + 1
   } else {
     console.log(kolorist.red(`${projectName} already exist. Change project Name and try again.`));
+    process.exit(1)
   }
 }
 
@@ -95,8 +97,10 @@ const generate = async (projectName) => {
     const style = textStyle(color)
 
     if (projectName && checkColor) {
-      changeTemplate(projectName, responseColor.color)
+      const tempLen = changeTemplate(projectName, responseColor.color)
       createFolder(projectName, style);
+      const readme = fs.readFileSync(resolve(__dirname, "../README.md"), "utf8")
+      fs.writeFileSync(resolve(__dirname, "../README.md"), readme + `${tempLen}. ${projectName}\n`)
     } else {
       process.exit(1)
     }

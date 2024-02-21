@@ -1,0 +1,19 @@
+{
+  "name": "Next-Eslint",
+  "description": "",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "<Project Repository>"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "<Issue>"
+  },
+  "homepage": "<Project Home Page>"
+}

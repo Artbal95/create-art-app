@@ -63,6 +63,13 @@ const remove = async () => {
     try {
       await removeFolder(templateName.name)
       changeTemplate(templates, templateName.name, temps)
+      const readme = fs.readFileSync(resolve(__dirname, "./temp/readme.txt"), "utf8");
+      const filterTempName = temps.filter(t => t.path !== templateName.name)
+      let tempsNames = ""
+      for (let i = 1; i <= filterTempName.length; i++) {
+        tempsNames += `${i}. ${filterTempName[i - 1].name}\n`
+      }
+      fs.writeFileSync(resolve(__dirname, "../README.md"), readme + "\n" + tempsNames)
     } catch (e) {
       console.log(e);
       process.exit(1)

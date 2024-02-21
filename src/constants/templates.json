@@ -4,5 +4,11 @@
     "path": "react-vite-eslint",
     "color": "yellow",
     "isAdmin": true
+  },
+  {
+    "name": "Next Eslint",
+    "path": "next-eslint",
+    "color": "green",
+    "isAdmin": false
   }
 ]

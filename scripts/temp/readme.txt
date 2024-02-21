@@ -28,6 +28,3 @@ $ npx create-react-app .
 <!-- usagestop -->
 
 # Templates
-
-1. React Vite Eslint
-2. Next Eslint
