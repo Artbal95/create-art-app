@@ -38,7 +38,7 @@
     "prettier": "prettier . --write",
     "gen": "node scripts/generate.js",
     "rem": "node scripts/remove.js",
-    "preversion": "yarn build && git add .",
+    "preversion": "yarn build && node scripts/publish.js",
     "postpublish": "git push origin HEAD"
   },
   "dependencies": {
