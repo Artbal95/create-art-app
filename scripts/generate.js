@@ -37,7 +37,7 @@ const createFolder = (projectName, color) => {
 
       const packageJson = fs.readFileSync(resolve(__dirname, './temp/package.json'), "utf8")
       const pack = JSON.parse(packageJson);
-      pack.name = projectName.split(" ").join("-")
+      pack.name = projectName.toLowerCase().split(" ").join("-")
       fs.writeFileSync(resolve(templatesDir, "package.json"), JSON.stringify(pack, null, 2))
 
       console.log(kolorist.green("Success: Create the folder in templates"));
