@@ -1,6 +1,6 @@
 {
   "name": "create-art-app",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Create templates who provides a minimal setup to get App working with some ESLint rules.",
   "author": "Arthur Balayan",
   "license": "ISC",
@@ -38,7 +38,8 @@
     "prettier": "prettier . --write",
     "gen": "node scripts/generate.js",
     "rem": "node scripts/remove.js",
-    "preversion": "yarn build && node scripts/publish.js",
+    "preversion": "yarn build",
+    "prepublish": "node scripts/publish.js",
     "postpublish": "git push origin HEAD"
   },
   "dependencies": {
