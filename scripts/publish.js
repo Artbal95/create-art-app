@@ -8,7 +8,7 @@ const prePublish = () => {
     const pack = JSON.parse(packageJson);
     if (pack?.version) {
       execSync("git add .", { cwd: process.cwd() });
-      execSync(`git commit -m "r${pack.version}"`, { cwd: process.cwd() })
+      execSync(`git commit -m "v${pack.version}"`, { cwd: process.cwd() })
     }
   } catch (e) {
     console.log(e);
