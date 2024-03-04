@@ -24,14 +24,14 @@ dist-ssr
 *.sw?
 
 # Other Folders
-.eslintignore
-.eslintprod.cjs
-.eslintrc.cjs
-.eslintrules.cjs
-.gitignore
-.lintstagedrc.json
-.prettierignore
-.prettierrc.json
-tsconfig.json
-src
-scripts
+/.eslintignore
+/.eslintprod.cjs
+/.eslintrc.cjs
+/.eslintrules.cjs
+/.gitignore
+/.lintstagedrc.json
+/.prettierignore
+/.prettierrc.json
+/tsconfig.json
+/src
+/scripts
