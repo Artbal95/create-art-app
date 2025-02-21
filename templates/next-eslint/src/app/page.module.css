@@ -1,0 +1,19 @@
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem;
+  min-height: 100vh;
+}
+
+.main > a {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 15px 25px;
+  box-shadow: inset 0 0 30px -5px gray;
+  transition: all .3s;
+}
+
+.main > a:hover {
+  box-shadow: inset 0 0 30px 5px gray;
+}

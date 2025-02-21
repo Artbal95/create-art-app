@@ -1,0 +1,40 @@
+{
+  "name": "create-art-app",
+  "version": "1.0.0",
+  "description": "CLI tool to create React and Next.js projects with ESLint",
+  "bin": {
+    "create-art-app": "./bin/index.js"
+  },
+  "type": "module",
+  "main": "./bin/index.js",
+  "scripts": {
+    "release": "standard-version",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "commander": "^13.1.0",
+    "fs-extra": "^11.3.0",
+    "inquirer": "^12.4.2"
+  },
+  "keywords": [
+    "cli",
+    "react",
+    "nextjs",
+    "template"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "publishConfig": {
+    "files": [
+      "bin",
+      "index.js",
+      "package.json",
+      "README.md"
+    ]
+  },
+  "devDependencies": {
+    "husky": "^8.0.0",
+    "lint-staged": "^15.4.3",
+    "standard-version": "^9.5.0"
+  }
+}

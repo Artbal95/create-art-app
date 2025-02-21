@@ -1,0 +1,9 @@
+# Ignore artifacts:
+build
+coverage
+tsconfig.json
+tsconfig.node.json
+.eslintrc.cjs
+.eslintrules.cjs
+.eslintprod.cjs
+.lintstagedrc.js
