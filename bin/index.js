@@ -3,16 +3,20 @@
 import path from 'path';
 import fs from 'fs-extra';
 import inquirer from 'inquirer';
-import { program } from 'commander';
+import {program} from 'commander';
+import {fileURLToPath} from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+console.log(__dirname);
 
 // Define available templates
 const TEMPLATES = [
-    { name: 'React App', value: 'react-eslint' },
-    { name: 'Next App', value: 'next-eslint' },
+    {name: 'React App', value: 'react-eslint'},
+    {name: 'React-Router App', value: 'react-router'},
+    {name: 'Next App', value: 'next-eslint'},
 ];
-
-// Define ignored files and directories
-const IGNORED_FILES = ['.vscode', '.idea', 'node_modules'];
 
 /**
  * Check if the directory is empty (excluding ignored files).
@@ -23,7 +27,7 @@ async function isDirectoryEmpty(dir) {
     if (!(await fs.pathExists(dir))) return true;
 
     const files = await fs.readdir(dir);
-    return files.every(file => IGNORED_FILES.includes(file));
+    return !files.length;
 }
 
 /**
@@ -33,9 +37,7 @@ async function isDirectoryEmpty(dir) {
 async function clearDirectory(dir) {
     const files = await fs.readdir(dir);
     for (const file of files) {
-        if (!IGNORED_FILES.includes(file)) {
-            await fs.remove(path.join(dir, file));
-        }
+        await fs.remove(path.join(dir, file));
     }
 }
 
@@ -44,7 +46,7 @@ async function clearDirectory(dir) {
  * @returns {Promise<string>} - The selected template name.
  */
 async function promptUserForTemplate() {
-    const { templateChoice } = await inquirer.prompt([
+    const {templateChoice} = await inquirer.prompt([
         {
             type: 'list',
             name: 'templateChoice',
@@ -60,15 +62,15 @@ async function promptUserForTemplate() {
  * @returns {Promise<string>} - The selected action ('clear', 'cancel', 'skip').
  */
 async function promptUserForAction(directory) {
-    const { action } = await inquirer.prompt([
+    const {action} = await inquirer.prompt([
         {
             type: 'list',
             name: 'action',
             message: `The directory "${directory}" is not empty. What do you want to do?`,
             choices: [
-                { name: 'Clear the directory', value: 'clear' },
-                { name: 'Cancel the operation', value: 'cancel' },
-                { name: 'Skip check and copy files', value: 'skip' },
+                {name: 'Clear the directory', value: 'clear'},
+                {name: 'Cancel the operation', value: 'cancel'},
+                {name: 'Skip check and copy files', value: 'skip'},
             ],
         },
     ]);
@@ -81,7 +83,7 @@ program
     .arguments('<directory>')
     .action(async (directory) => {
         const destinationDir = path.resolve(directory);
-        const templateDir = path.resolve(process.cwd(), '../templates');
+        const templateDir = path.resolve(__dirname, '../templates');
 
         try {
             // Handle existing directory case
@@ -114,22 +116,27 @@ program
             }
 
             // Copy the template
-            await fs.copy(selectedTemplatePath, destinationDir, { recursive: true });
+            await fs.copy(selectedTemplatePath, destinationDir, {recursive: true});
 
             // Modify package.json
             const packageJsonPath = path.join(destinationDir, 'package.json');
             if (await fs.exists(packageJsonPath)) {
                 const packageJson = await fs.readJson(packageJsonPath);
                 packageJson.name = path.basename(destinationDir); // Set the package name as the folder name
-                await fs.writeJson(packageJsonPath, packageJson, { spaces: 2 });
+                await fs.writeJson(packageJsonPath, packageJson, {spaces: 2});
             }
 
             console.log('Project created successfully!');
             console.log('✅ Project copied successfully!');
             console.log('\nNext Steps:');
-            console.log(`  1. cd ${directory}`);
-            console.log('  2. Install dependencies: npm install or pnpm install');
-            console.log('  3. Start the project: npm start or npm run dev');
+            if (directory === ".") {
+                console.log('  1. Install dependencies: npm install or pnpm install');
+                console.log('  2. Start the project: npm start or npm run dev');
+            } else {
+                console.log(`  1. cd ${directory}`);
+                console.log('  2. Install dependencies: npm install or pnpm install');
+                console.log('  3. Start the project: npm start or npm run dev');
+            }
             console.log('\n🚀 Happy Coding!');
         } catch (err) {
             console.error('❌ Error creating project:', err);

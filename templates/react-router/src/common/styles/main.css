@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body * {
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+a, a:visited, a:hover, a:focus, a:active {
+  all: unset;
+  display: inline-block;
+  cursor: pointer;
+}

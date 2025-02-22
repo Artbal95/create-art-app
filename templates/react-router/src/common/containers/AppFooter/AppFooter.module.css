@@ -1,0 +1,57 @@
+.AppFooter {
+    background-color: #111;
+    color: white;
+    padding: 2rem 0;
+}
+
+.AppFooterContainer {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.AppFooterGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .AppFooterGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.AppFooterLogo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.AppFooterText {
+    color: #bbb;
+    margin-top: 0.5rem;
+}
+
+.AppFooterTitle {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.AppFooterLinks p,
+.AppFooterSocials p {
+    color: #bbb;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+    margin-top: 0.5rem;
+}
+
+.AppFooterLinks p:hover,
+.AppFooterSocials p:hover {
+    color: white;
+}
+
+.AppFooterCopyright {
+    margin-top: 2rem;
+    text-align: center;
+    color: #777;
+}

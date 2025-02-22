@@ -46,6 +46,7 @@ npm run prepare
 ## 📁 Project Templates
 Available templates:
 - **React App** (`react-eslint`)
+- **React-Router App** (`react-router`)
 - **Next.js App** (`next-eslint`)
 
 ## 🚨 Issues
