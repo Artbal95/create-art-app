@@ -10,8 +10,6 @@ import unusedImports from "eslint-plugin-unused-imports";
 import tsParser from "@typescript-eslint/parser";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 
-console.log(process.env);
-
 export default tseslint.config(
   eslintPluginPrettierRecommended,
   { ignores: ["dist"] },
@@ -61,14 +59,13 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       // Rules for production environment
-      "no-duplicate-case": process.env.NODE_ENV === "production" ? 2 : 1,
+      "no-duplicate-case": process.env.MODE === "prd" ? 2 : 1,
       "no-console": [
-        process.env.NODE_ENV === "production" ? 2 : 1,
+        process.env.MODE === "prd" ? 2 : 1,
         { allow: ["warn", "error"] },
       ],
-      "no-debugger": process.env.NODE_ENV === "production" ? 2 : 1,
-      "@typescript-eslint/no-unused-vars":
-        process.env.NODE_ENV === "production" ? 2 : 1,
+      "no-debugger": process.env.MODE === "prd" ? 2 : 1,
+      "@typescript-eslint/no-unused-vars": process.env.MODE === "prd" ? 2 : 1,
       "no-unused-vars": 0,
 
       // General ESLint rules
