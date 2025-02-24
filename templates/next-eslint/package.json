@@ -6,8 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "lint-fix": "next lint --fix",
+    "lint": "cross-env MODE=dev eslint .",
+    "fix": "cross-env MODE=prd eslint . --fix",
     "types": "tsc --noEmit",
     "prepare": "husky"
   },
@@ -21,6 +21,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cross-env": "^7.0.3",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
     "eslint-config-prettier": "^10.0.1",
