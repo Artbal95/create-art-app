@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "fix": "eslint . --fix",
+    "lint": "cross-env MODE=dev eslint .",
+    "fix": "cross-env MODE=prd eslint . --fix",
     "types": "tsc --noEmit",
     "preview": "vite preview",
     "prepare": "husky"
@@ -26,6 +26,7 @@
     "@typescript-eslint/eslint-plugin": "^8.24.1",
     "@typescript-eslint/parser": "^8.24.1",
     "@vitejs/plugin-react": "^4.3.4",
+    "cross-env": "^7.0.3",
     "eslint": "^9.19.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-import-resolver-typescript": "^3.8.2",
@@ -45,7 +46,7 @@
     "vite": "^6.1.0"
   },
   "lint-staged": {
-    "*.ts": "eslint --cache --fix",
-    "*.tsx": "eslint --cache --fix"
+    "*.ts": "cross-env MODE=prd eslint --cache --fix",
+    "*.tsx": "cross-env MODE=prd eslint --cache --fix"
   }
 }
