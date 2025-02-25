@@ -1,6 +1,6 @@
 {
   "name": "create-art-app",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "CLI tool to create React and Next.js projects with ESLint",
   "author": "Arthur Balayan",
   "license": "MIT",
