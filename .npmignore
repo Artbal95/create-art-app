@@ -22,12 +22,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-.github
-
-# Other Folders
-/.eslintignore
-/.eslintprod.cjs
-/.eslintrc.cjs
-/.eslintrules.cjs
-/.gitignore
-/.husky
